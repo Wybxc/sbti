@@ -1,4 +1,4 @@
-import html2canvas from 'html2canvas';
+import { snapdom } from '@zumer/snapdom';
 import { useRef, useState } from 'react';
 
 type FormData = {
@@ -37,16 +37,15 @@ export function App() {
       return;
     }
 
-    const canvas = await html2canvas(previewElement, {
+    const result = await snapdom(previewElement, {
       backgroundColor: '#f8fafc',
       scale: window.devicePixelRatio > 1 ? 2 : 1,
-      useCORS: true,
+      embedFonts: true,
     });
 
-    const link = document.createElement('a');
-    link.download = `SBTI_${formData.personalityType}_${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    await result.download({
+      filename: `SBTI_${formData.personalityType}_${Date.now()}.png`,
+    });
   };
 
   const previewCard = (

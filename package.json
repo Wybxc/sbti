@@ -8,7 +8,7 @@
     "build": "parcel build"
   },
   "dependencies": {
-    "html2canvas": "^1.4.1",
+    "@zumer/snapdom": "^2.8.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
