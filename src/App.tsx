@@ -22,7 +22,9 @@ const initialFormData: FormData = {
 
 export function App() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [imageUrl, setImageUrl] = useState<string>(new URL("default.jpg", import.meta.url).href);
+  const [imageUrl, setImageUrl] = useState<string>(
+    new URL("default.jpg", import.meta.url).href,
+  );
   const previewRef = useRef<HTMLDivElement | null>(null);
   const uploadedImageUrlRef = useRef<string | null>(null);
 
@@ -153,16 +155,16 @@ export function App() {
     <div className="min-h-screen px-4 py-6 text-base-content sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-6">
         <div className="hero rounded-4xl border border-base-200 bg-base-100/90 shadow-xl backdrop-blur-sm">
-          <div className="hero-content flex-col gap-6 py-8 lg:flex-row lg:items-end lg:justify-between lg:px-10">
+          <header className="hero-content flex-col gap-6 py-8 lg:flex-row lg:items-end lg:justify-between lg:px-10">
             <div className="max-w-2xl">
               <h1 className="text-4xl font-black tracking-tight text-base-content sm:text-5xl">
                 SBTI人格类型生成器
               </h1>
             </div>
-          </div>
+          </header>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+        <main className="grid grid-cols-1 gap-6 xl:grid-cols-2">
           <section className="card border border-base-200 bg-base-100 shadow-xl">
             <div className="card-body gap-6">
               <div>
@@ -317,7 +319,13 @@ export function App() {
               </div>
             </div>
           </section>
-        </div>
+        </main>
+
+        <footer className="card border-base-200 bg-base-100/50 py-6 text-center text-sm text-base-content/60 backdrop-blur-sm">
+          <p>© 2026 <a href="https://github.com/Wybxc" target="_blank" rel="noopener noreferrer" className="link">
+            Wybxc
+          </a> · generated with AI</p>
+        </footer>
       </div>
     </div>
   );
