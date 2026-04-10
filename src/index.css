@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: cupcake --default, winter;
+  themes:
+    cupcake --default,
+    winter;
 }
 
 html,
@@ -13,7 +15,15 @@ body {
   margin: 0;
   font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(251, 207, 232, 0.45), transparent 32%),
-    radial-gradient(circle at top right, rgba(196, 181, 253, 0.28), transparent 28%),
+    radial-gradient(
+      circle at top left,
+      rgba(251, 207, 232, 0.45),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(196, 181, 253, 0.28),
+      transparent 28%
+    ),
     linear-gradient(180deg, #faf5ff 0%, #fff1f2 100%);
 }
