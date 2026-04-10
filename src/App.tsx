@@ -11,20 +11,18 @@ type FormData = {
 };
 
 const initialFormData: FormData = {
-  personalityType: "尤物",
-  englishType: "SEXY",
-  description: "您就是天生的尤物！",
-  matchRate: "70%",
-  accuracy: "9/15",
+  personalityType: "分析者",
+  englishType: "SBTI",
+  description: "十六型人格爱好者",
+  matchRate: "100%",
+  accuracy: "15/15",
   interpretation:
-    "当您走进一个房间，照明系统会自动将您识别为天生的尤物！您的存在会让周围环境温度显著下降，因为水蒸气都凝结成了人眼中",
+    "热衷于测试和分析一切，喜欢通过各种维度来理解自己和他人。对人格类型有着极高的兴趣和研究热情，常常能准确地分析出他人的人格类型。",
 };
 
 export function App() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [imageUrl, setImageUrl] = useState<string>(
-    "https://placehold.co/200x250/FFD700/FFFFFF?text=Character",
-  );
+  const [imageUrl, setImageUrl] = useState<string>(new URL("default.jpg", import.meta.url).href);
   const previewRef = useRef<HTMLDivElement | null>(null);
   const uploadedImageUrlRef = useRef<string | null>(null);
 
@@ -157,36 +155,9 @@ export function App() {
         <div className="hero rounded-4xl border border-base-200 bg-base-100/90 shadow-xl backdrop-blur-sm">
           <div className="hero-content flex-col gap-6 py-8 lg:flex-row lg:items-end lg:justify-between lg:px-10">
             <div className="max-w-2xl">
-              <div className="mb-4 flex flex-wrap gap-2">
-                <div className="badge badge-primary badge-outline">SBTI</div>
-                <div className="badge badge-secondary badge-outline">
-                  daisyUI
-                </div>
-                <div className="badge badge-accent badge-outline">
-                  SnapDOM 导出
-                </div>
-              </div>
               <h1 className="text-4xl font-black tracking-tight text-base-content sm:text-5xl">
                 SBTI人格类型生成器
               </h1>
-              <p className="mt-4 max-w-xl text-base leading-7 text-base-content/70 sm:text-lg">
-                用更清晰的卡片层次、输入组件和移动端预览，把原来的原型页面整理成更像正式产品的界面。
-              </p>
-            </div>
-
-            <div className="stats stats-vertical bg-base-200 shadow md:stats-horizontal">
-              <div className="stat px-6 py-4">
-                <div className="stat-title">当前类型</div>
-                <div className="stat-value text-3xl">
-                  {formData.personalityType}
-                </div>
-                <div className="stat-desc">{formData.englishType}</div>
-              </div>
-              <div className="stat px-6 py-4">
-                <div className="stat-title">匹配度</div>
-                <div className="stat-value text-3xl">{formData.matchRate}</div>
-                <div className="stat-desc">精准命中 {formData.accuracy}</div>
-              </div>
             </div>
           </div>
         </div>
@@ -197,7 +168,7 @@ export function App() {
               <div>
                 <h2 className="card-title text-2xl">输入您的SBTI信息</h2>
                 <p className="text-sm text-base-content/60">
-                  修改内容后，右侧预览会同步更新。
+                  修改内容后，预览会同步更新。
                 </p>
               </div>
 
@@ -216,11 +187,6 @@ export function App() {
                       handleImageUpload(event.target.files?.[0] ?? null)
                     }
                   />
-                  <div className="label">
-                    <span className="label-text-alt text-base-content/60">
-                      支持 JPG、PNG、WebP 等常见图片格式
-                    </span>
-                  </div>
                 </div>
 
                 <label className="form-control">
@@ -236,7 +202,7 @@ export function App() {
                       handleInputChange("personalityType", e.target.value)
                     }
                     className="input input-bordered w-full"
-                    placeholder="例如：尤物"
+                    placeholder={initialFormData.personalityType}
                   />
                 </label>
 
@@ -251,7 +217,7 @@ export function App() {
                       handleInputChange("englishType", e.target.value)
                     }
                     className="input input-bordered w-full"
-                    placeholder="例如：SEXY"
+                    placeholder={initialFormData.englishType}
                   />
                 </label>
 
@@ -266,7 +232,7 @@ export function App() {
                       handleInputChange("description", e.target.value)
                     }
                     className="input input-bordered w-full"
-                    placeholder="例如：您就是天生的尤物！"
+                    placeholder={initialFormData.description}
                   />
                 </label>
 
@@ -281,7 +247,7 @@ export function App() {
                       handleInputChange("matchRate", e.target.value)
                     }
                     className="input input-bordered w-full"
-                    placeholder="例如：70%"
+                    placeholder={initialFormData.matchRate}
                   />
                 </label>
 
@@ -296,7 +262,7 @@ export function App() {
                       handleInputChange("accuracy", e.target.value)
                     }
                     className="input input-bordered w-full"
-                    placeholder="例如：9/15"
+                    placeholder={initialFormData.accuracy}
                   />
                 </label>
 
@@ -310,7 +276,7 @@ export function App() {
                       handleInputChange("interpretation", e.target.value)
                     }
                     className="textarea textarea-bordered min-h-36 w-full"
-                    placeholder="例如：当您走进一个房间，照明系统会自动将您识别为天生的尤物！"
+                    placeholder={initialFormData.interpretation}
                   />
                 </label>
               </div>
@@ -331,9 +297,6 @@ export function App() {
             <div className="card-body gap-6">
               <div>
                 <h2 className="card-title text-2xl">预览效果</h2>
-                <p className="text-sm text-base-content/60">
-                  右侧区域用于导出图片，样式保持固定以保证截图稳定。
-                </p>
               </div>
 
               <div ref={previewRef} className="mockup-phone mx-auto">
